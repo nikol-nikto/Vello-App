@@ -1,0 +1,2 @@
+// Translation setup.
+export {};

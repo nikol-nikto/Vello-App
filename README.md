@@ -1,56 +1,66 @@
-# Welcome to your Expo app 👋
+<!-- @format -->
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# Vello
 
-## Get started
+Mobile app for **Vello**, a single-brand women's fashion store: everyday urban and casual clothing and shoes for women.
 
-1. Install dependencies
+The store has one physical location, so the app supports **pickup only** with **prepayment** (bank card or SBP). Market — Russia, currency — RUB, UI language — Russian (architecture ready for English).
 
-   ```bash
-   npm install
-   ```
+## Features (MVP)
 
-2. Start the app
+- **Home** — popular products, sale, categories, recommendations, store info with map
+- **Catalog & Search** — categories, filters (color, price, availability, on sale), sorting
+- **Product Details** — color-bound image gallery, color and size selection, stock status, reviews, size guide
+- **Favorites** — saved products with back-in-stock notifications
+- **Cart & Checkout** — guest cart, merged into the account cart on login; single-screen checkout
+- **Orders** — order history, statuses, cancellation, reviews for received items
+- **Account** — registration with email verification, login, password reset, profile editing, account deletion
+- **Notifications** — in-app order status and back-in-stock updates
+- **Settings** — theme (System / Light / Dark), language, notification preferences
 
-   ```bash
-   npx expo start
-   ```
+## Tech stack
 
-In the output, you'll find options to open the app in a
+| Area         | Choice                                                                              |
+| ------------ | ----------------------------------------------------------------------------------- |
+| Framework    | [Expo](https://expo.dev) SDK 57, React Native 0.86, React 19.2                      |
+| Language     | TypeScript (strict)                                                                 |
+| Navigation   | [Expo Router](https://docs.expo.dev/router/introduction) (file-based, typed routes) |
+| Compiler     | React Compiler                                                                      |
+| Animations   | Reanimated 4, Gesture Handler                                                       |
+| Images       | expo-image                                                                          |
+| Localization | i18next, react-i18next, expo-localization                                           |
+| Architecture | [Feature-Sliced Design](https://fsd.how)                                            |
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Project structure
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+The code follows [Feature-Sliced Design](https://fsd.how).
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+src/
+├── app/        # Expo Router routes — thin files that re-export pages
+├── _app/       # FSD App layer: entrypoint, providers, styles, store, analytics
+├── pages/      # Screens, one slice per screen
+└── shared/     # Business-agnostic code: api, ui, lib, config, routes, i18n
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Getting started
 
-### Other setup steps
+```bash
+npm install
+npx expo start
+```
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+Then open the app in [Expo Go](https://expo.dev/go), an Android emulator, an iOS simulator, or a [development build](https://docs.expo.dev/develop/development-builds/introduction/).
 
-## Learn more
+## Scripts
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+npm run start      # start the dev server
+npm run android    # open on Android
+npm run ios        # open on iOS
+npm run web        # open in the browser
+npm run lint       # lint
+npx tsc --noEmit   # typecheck
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Add dependencies with `npx expo install <package>` so versions stay compatible with the Expo SDK.
